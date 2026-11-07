@@ -50,11 +50,23 @@ export default function RegisterPage() {
       <div className="w-full max-w-lg">
         {/* Logo */}
         <div className="text-center mb-6">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-primary-600 rounded-2xl mb-3 shadow-lg shadow-primary-200">
-            <Brain size={28} className="text-white"/>
+          <Link to="/" className="inline-block hover:scale-105 transition-transform">
+            <div className="w-20 h-20 rounded-3xl overflow-hidden shadow-xl mx-auto mb-2.5 bg-white border-2 border-primary-200 p-1">
+              <img
+                src="/logo.jpg"
+                alt="Brain Breakers Academy Logo"
+                className="w-full h-full object-cover object-bottom rounded-2xl"
+              />
+            </div>
+          </Link>
+          <div className="flex items-center justify-center gap-1.5 leading-none">
+            <span className="text-xl font-black text-[#156e3b]">BRAIN</span>
+            <span className="text-xl font-black text-[#ff781f]">BREAKERS</span>
           </div>
-          <h1 className="text-2xl font-extrabold text-navy-900">Create Your Account</h1>
-          <p className="text-gray-500 text-sm mt-1">Join Brain Breakers Academy today!</p>
+          <p className="text-[10px] font-black tracking-widest text-[#156e3b] uppercase mt-0.5">
+            Academy
+          </p>
+          <p className="text-gray-500 text-xs mt-1">Enroll at Brain Breakers Academy</p>
         </div>
 
         <div className="bg-white rounded-3xl shadow-xl border border-primary-100 p-8">

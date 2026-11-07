@@ -13,12 +13,21 @@ export default function Navbar() {
 
   return (
     <header className="h-16 bg-white border-b border-primary-100 flex items-center px-6 gap-4 sticky top-0 z-20 shadow-sm">
-      {/* Greeting */}
-      <div className="flex-1">
-        <p className="text-sm font-semibold text-navy-800">
-          {greeting()}, <span className="text-primary-600">{user?.full_name.split(' ')[0]}</span>!
-        </p>
-        <p className="text-xs text-gray-400">Think Beyond, Learn Beyond 🧠</p>
+      {/* Greeting & Institute Brand */}
+      <div className="flex-1 flex items-center gap-3">
+        <img
+          src="/logo.jpg"
+          alt="Brain Breakers Academy"
+          className="w-8 h-8 rounded-lg object-cover shadow-sm md:hidden"
+        />
+        <div>
+          <p className="text-sm font-semibold text-navy-800">
+            {greeting()}, <span className="text-primary-600">{user?.full_name.split(' ')[0]}</span>!
+          </p>
+          <p className="text-xs text-gray-500 font-medium">
+            Brain Breakers Academy · <span className="italic text-primary-600">Think Beyond, Learn Beyond</span>
+          </p>
+        </div>
       </div>
 
       {/* Search bar */}

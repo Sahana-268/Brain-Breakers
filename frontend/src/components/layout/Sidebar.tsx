@@ -63,19 +63,28 @@ export default function Sidebar() {
       )}
     >
       {/* Logo */}
-      <div className="flex items-center gap-3 px-4 py-5 border-b border-primary-800/30">
-        <div className="w-9 h-9 bg-primary-500 rounded-xl flex items-center justify-center flex-shrink-0">
-          <Brain size={20} className="text-white" />
+      <div className="flex items-center gap-3 px-3.5 py-4 border-b border-primary-800/30">
+        <div className="w-10 h-10 rounded-xl overflow-hidden bg-white p-0.5 shadow-md flex-shrink-0 border border-amber-400/30">
+          <img
+            src="/logo.jpg"
+            alt="Brain Breakers Academy"
+            className="w-full h-full object-cover object-bottom rounded-lg"
+          />
         </div>
         {!collapsed && (
           <div className="overflow-hidden">
-            <p className="text-white font-bold text-sm leading-tight">Brain Breakers</p>
-            <p className="text-primary-300 text-xs">Academy</p>
+            <div className="flex items-center gap-1 leading-none">
+              <span className="text-[#34d399] font-black text-sm tracking-tight">BRAIN</span>
+              <span className="text-[#fb923c] font-black text-sm tracking-tight">BREAKERS</span>
+            </div>
+            <p className="text-primary-300 text-[10px] uppercase font-bold tracking-widest mt-0.5">
+              Academy
+            </p>
           </div>
         )}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="ml-auto text-primary-400 hover:text-white transition-colors"
+          className="ml-auto text-primary-400 hover:text-white transition-colors p-1"
           title={collapsed ? 'Expand' : 'Collapse'}
         >
           {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}

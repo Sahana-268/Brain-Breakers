@@ -43,12 +43,24 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Logo */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-600 rounded-2xl mb-4 shadow-lg shadow-primary-200">
-            <Brain size={32} className="text-white"/>
+        <div className="text-center mb-6">
+          <Link to="/" className="inline-block hover:scale-105 transition-transform">
+            <div className="w-24 h-24 rounded-3xl overflow-hidden shadow-xl mx-auto mb-3 bg-white border-2 border-primary-200 p-1">
+              <img
+                src="/logo.jpg"
+                alt="Brain Breakers Academy Logo"
+                className="w-full h-full object-cover object-bottom rounded-2xl"
+              />
+            </div>
+          </Link>
+          <div className="flex items-center justify-center gap-1.5 leading-none">
+            <span className="text-2xl font-black text-[#156e3b]">BRAIN</span>
+            <span className="text-2xl font-black text-[#ff781f]">BREAKERS</span>
           </div>
-          <h1 className="text-2xl font-extrabold text-navy-900">Brain Breakers Academy</h1>
-          <p className="text-gray-500 text-sm mt-1">Think Beyond, Learn Beyond 🧠</p>
+          <p className="text-xs font-black tracking-widest text-[#156e3b] uppercase mt-1">
+            Academy
+          </p>
+          <p className="text-gray-500 text-xs mt-1 italic">Think Beyond, Learn Beyond</p>
         </div>
 
         {/* Card */}

@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { Brain, Zap, Trophy, Star, BookOpen, Users, ChevronRight, Calculator } from 'lucide-react';
+import { Zap, Trophy, Star, BookOpen, Users, ChevronRight, Calculator } from 'lucide-react';
+import Logo from '@/components/ui/Logo';
 
 const FEATURES = [
   { icon: <Calculator size={28} className="text-primary-500"/>, title: 'Interactive Abacus', desc: 'Practice with a real virtual abacus – move beads, see values instantly.' },
@@ -22,45 +23,64 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navbar */}
-      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-primary-100 shadow-sm">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center gap-6">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary-600 rounded-xl flex items-center justify-center">
-              <Brain size={18} className="text-white"/>
-            </div>
-            <span className="font-bold text-navy-900 text-sm">Brain Breakers Academy</span>
+      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-primary-100 shadow-sm">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
+          <Logo size="md" />
+
+          <div className="flex items-center gap-4">
+            <Link to="/login" className="text-sm font-semibold text-primary-700 hover:text-primary-900 transition-colors">
+              Log In
+            </Link>
+            <Link to="/register" className="btn-primary text-sm px-5 py-2 font-bold shadow-md shadow-primary-200">
+              Get Started Free
+            </Link>
           </div>
-          <div className="flex-1" />
-          <Link to="/login" className="text-sm font-medium text-primary-600 hover:text-primary-800 transition-colors">
-            Log In
-          </Link>
-          <Link to="/register" className="btn-primary text-sm px-4 py-2">
-            Get Started
-          </Link>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-navy-900 via-primary-900 to-primary-700 text-white py-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-primary-500/20 border border-primary-400/30 rounded-full px-4 py-1.5 text-sm text-primary-200 mb-6">
-            <Zap size={14}/> Think Beyond, Learn Beyond
+      <section className="bg-gradient-to-br from-navy-900 via-primary-950 to-primary-800 text-white py-16 md:py-24 px-6 overflow-hidden relative">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Left Text */}
+          <div className="lg:col-span-7 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur rounded-full px-4 py-1.5 text-xs font-bold text-accent-300 mb-6">
+              <Zap size={14} className="text-yellow-400" /> Think Beyond, Learn Beyond
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-6 leading-[1.1] tracking-tight">
+              Brain Breakers<br/>
+              <span className="text-accent-400 font-extrabold">Academy</span>
+            </h1>
+            <p className="text-base sm:text-lg text-primary-100/90 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              Build laser focus, razor-sharp photographic memory, and superhuman mental math skills through our interactive 8-level Abacus & Flash Anzan learning system.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+              <button
+                onClick={() => navigate('/register')}
+                className="flex items-center gap-2 bg-gradient-to-r from-amber-400 to-orange-500 text-navy-950 font-black px-7 py-3.5 rounded-2xl hover:brightness-110 transition-all shadow-xl shadow-orange-500/20"
+              >
+                Join Brain Breakers Free <ChevronRight size={18}/>
+              </button>
+              <button
+                onClick={() => navigate('/login')}
+                className="flex items-center gap-2 bg-white/10 border border-white/20 text-white font-semibold px-7 py-3.5 rounded-2xl hover:bg-white/20 transition-all"
+              >
+                Sign In to Portal
+              </button>
+            </div>
           </div>
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-            Master Abacus &<br/>
-            <span className="text-accent-400">Mental Maths</span>
-          </h1>
-          <p className="text-lg text-primary-200 mb-10 max-w-2xl mx-auto">
-            A complete learning platform for abacus education — from beginner to grandmaster.
-            Practice, compete, and earn certificates with Brain Breakers Academy.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <button onClick={() => navigate('/register')} className="flex items-center gap-2 bg-white text-primary-700 font-bold px-7 py-3.5 rounded-xl hover:bg-primary-50 transition-all shadow-lg shadow-primary-900/30">
-              Start Learning Free <ChevronRight size={18}/>
-            </button>
-            <button onClick={() => navigate('/login')} className="flex items-center gap-2 bg-primary-600/30 border border-primary-400/40 text-white font-semibold px-7 py-3.5 rounded-xl hover:bg-primary-600/50 transition-all">
-              I already have an account
-            </button>
+
+          {/* Right Official Artwork Showcase */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-gradient-to-r from-orange-400 to-primary-500 rounded-3xl blur-2xl opacity-30 group-hover:opacity-40 transition-opacity" />
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 max-w-sm bg-white">
+                <img
+                  src="/hero-image.jpg"
+                  alt="Brain Breakers Academy – Think Beyond, Learn Beyond"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -122,12 +142,12 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-navy-900 text-primary-300 py-8 px-6 text-center text-sm">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <Brain size={16}/>
-          <span className="font-semibold text-white">Brain Breakers Academy</span>
+      <footer className="bg-navy-900 text-primary-300 py-10 px-6 text-center text-sm">
+        <div className="flex justify-center mb-3">
+          <Logo size="sm" to="/" />
         </div>
-        <p>© 2026 Brain Breakers Academy. Think Beyond, Learn Beyond.</p>
+        <p className="text-gray-400 text-xs">Think Beyond, Learn Beyond.</p>
+        <p className="text-gray-500 text-xs mt-1">© 2026 Brain Breakers Academy. All rights reserved.</p>
       </footer>
     </div>
   );
