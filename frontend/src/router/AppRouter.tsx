@@ -16,6 +16,7 @@ import FlashAnzanPage from '@/pages/student/FlashAnzanPage';
 import MockExamPage from '@/pages/student/MockExamPage';
 import MyResults from '@/pages/student/MyResults';
 import CompetitionsPage from '@/pages/student/CompetitionsPage';
+import MyCertificates from '@/pages/student/MyCertificates';
 
 // Teacher pages
 import TeacherDashboard from '@/pages/teacher/TeacherDashboard';
@@ -64,6 +65,7 @@ export default function AppRouter() {
             <Route path="/student/exams" element={<MockExamPage />} />
             <Route path="/student/results" element={<MyResults />} />
             <Route path="/student/competitions" element={<CompetitionsPage />} />
+            <Route path="/student/certificates" element={<MyCertificates />} />
           </Route>
         </Route>
 

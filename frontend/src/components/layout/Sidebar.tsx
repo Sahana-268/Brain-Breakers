@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/authStore';
 import {
   LayoutDashboard, User, BookOpen, Calculator, Zap,
-  ClipboardList, Trophy, Medal, Users, Settings,
+  ClipboardList, Trophy, Medal, Users, Award,
   LogOut, ChevronLeft, ChevronRight, Brain
 } from 'lucide-react';
 import { useState } from 'react';
@@ -28,6 +28,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Flash Anzan',  to: '/student/flash-anzan',icon: <Zap size={18}/>,           roles: ['student'] },
   { label: 'Mock Exams',   to: '/student/exams',      icon: <ClipboardList size={18}/>, roles: ['student'] },
   { label: 'My Results',   to: '/student/results',    icon: <Medal size={18}/>,         roles: ['student'] },
+  { label: 'Certificates', to: '/student/certificates', icon: <Award size={18}/>,         roles: ['student'] },
   { label: 'Competitions', to: '/student/competitions',icon: <Trophy size={18}/>,       roles: ['student'] },
 
   { label: 'My Students',  to: '/teacher/students',   icon: <Users size={18}/>,         roles: ['teacher'] },

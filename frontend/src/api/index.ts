@@ -51,3 +51,13 @@ export const usersApi = {
   toggleActive: (id: number) => api.patch(`/users/${id}/toggle-active`),
 };
 
+export const certificateApi = {
+  myCertificates: () => api.get('/certificates/my'),
+  myAchievements: () => api.get('/certificates/achievements/my'),
+  generate: (data: object) => api.post('/certificates/generate', data),
+};
+
+export const reportApi = {
+  getStudentReport: (studentId: number) => api.get(`/reports/student/${studentId}`),
+};
+

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { studentApi } from '@/api/index';
+import { studentApi, certificateApi } from '@/api/index';
 import { Card } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
 import toast from 'react-hot-toast';
-import { Users, Award, ChevronUp, Search, Eye, FileText } from 'lucide-react';
+import { Users, Award, ChevronUp, Search, Eye, FileText, Printer } from 'lucide-react';
 
 interface StudentItem {
   id: number;
@@ -211,14 +211,32 @@ export default function MyStudents() {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-gray-100 flex gap-2">
+                <div className="pt-4 border-t border-gray-100 flex flex-col gap-2">
+                  <a
+                    href={`/api/reports/student/${selectedProgress.student_id}/printable`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-xl text-xs font-bold shadow-sm transition-all text-center"
+                  >
+                    <Printer size={15} /> Print / Save Parent Report (PDF)
+                  </a>
                   <Button
-                    onClick={() => {
-                      toast.success(`Parent report generated for ${selectedProgress.full_name}`);
+                    onClick={async () => {
+                      try {
+                        const res = await certificateApi.generate({
+                          student_id: selectedProgress.student_id,
+                          cert_type: 'level_completion',
+                          level_id: selectedProgress.current_level,
+                        });
+                        toast.success(`Official certificate ${res.data.cert_number} issued to ${selectedProgress.full_name}! 🎓`);
+                      } catch {
+                        toast.error('Failed to issue certificate');
+                      }
                     }}
+                    variant="secondary"
                     className="w-full font-bold text-xs"
                   >
-                    <FileText size={16} /> Send Report to Parent
+                    <Award size={15} className="text-amber-500" /> Issue Level {selectedProgress.current_level} Certificate
                   </Button>
                 </div>
               </div>

@@ -11,11 +11,11 @@ from slowapi.errors import RateLimitExceeded
 
 from app.config import settings
 from app.database import engine, Base, SessionLocal
-from app.models import User, UserRole, SyllabusLevel
+from app.models import User, UserRole, SyllabusLevel, Achievement
 from app.core.security import hash_password
 
 # Import all routers
-from app.routers import auth, users, students, syllabus, exams, results, competitions, leaderboard, practice
+from app.routers import auth, users, students, syllabus, exams, results, competitions, leaderboard, practice, certificates, reports
 
 
 # ---------------------------------------------------------------------------
@@ -115,8 +115,27 @@ def _seed_database():
                     total_marks=data["total_marks"],
                     duration_weeks=data["duration_weeks"],
                 ))
+
+        # Seed achievements
+        achievements_seed = [
+            {"name": "Abacus Pioneer", "description": "Joined Brain Breakers Academy and began your mental math journey", "icon": "🌱", "criteria_type": "account_created", "criteria_value": 1},
+            {"name": "Soroban Scholar", "description": "Completed 5 arithmetic practice sessions", "icon": "🧮", "criteria_type": "practice_sessions", "criteria_value": 5},
+            {"name": "Flash Prodigy", "description": "Successfully completed Flash Anzan speed drills", "icon": "⚡", "criteria_type": "flash_anzan", "criteria_value": 1},
+            {"name": "Honor Roll", "description": "Passed a timed mock examination with flying colors", "icon": "🎖️", "criteria_type": "exam_passed", "criteria_value": 1},
+            {"name": "Tournament Contender", "description": "Enrolled in an official abacus championship", "icon": "🏆", "criteria_type": "competition_registered", "criteria_value": 1},
+            {"name": "Mental Math Grandmaster", "description": "Achieved Level 8 Master Syllabus rank", "icon": "👑", "criteria_type": "level_reached", "criteria_value": 8},
+        ]
+        for ach in achievements_seed:
+            if not db.query(Achievement).filter(Achievement.name == ach["name"]).first():
+                db.add(Achievement(
+                    name=ach["name"],
+                    description=ach["description"],
+                    icon=ach["icon"],
+                    criteria_type=ach["criteria_type"],
+                    criteria_value=ach["criteria_value"],
+                ))
         db.commit()
-        print("[Seed] Syllabus levels seeded.")
+        print("[Seed] Seed data checked/completed.")
     finally:
         db.close()
 
@@ -173,6 +192,8 @@ app.include_router(results.router, prefix=API_PREFIX)
 app.include_router(competitions.router, prefix=API_PREFIX)
 app.include_router(leaderboard.router, prefix=API_PREFIX)
 app.include_router(practice.router, prefix=API_PREFIX)
+app.include_router(certificates.router, prefix=API_PREFIX)
+app.include_router(reports.router, prefix=API_PREFIX)
 
 
 @app.get("/", tags=["Health"])
